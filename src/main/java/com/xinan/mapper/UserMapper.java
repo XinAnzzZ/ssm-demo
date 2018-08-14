@@ -18,4 +18,12 @@ public interface UserMapper {
      * @return user
      */
     User findById(@Param("userId") Integer userId);
+
+    /**
+     * find by username
+     *
+     * @param username the username
+     * @return the user
+     */
+    User findByUsername(@Param("username") String username);
 }

@@ -15,4 +15,12 @@ public interface UserService {
      * @return User
      */
     User getUserInfoById(Integer userId);
+
+    /**
+     * get user info
+     *
+     * @param username the username
+     * @return user info
+     */
+    User getUserInfoByUsername(String username);
 }

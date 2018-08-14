@@ -23,9 +23,4 @@ public class UserController {
     public User getUserInfo(@PathVariable("id") Integer userId) {
         return userService.getUserInfoById(userId);
     }
-
-    @GetMapping("/user/login")
-    public String userLoginPage() {
-        return "/user/login";
-    }
 }

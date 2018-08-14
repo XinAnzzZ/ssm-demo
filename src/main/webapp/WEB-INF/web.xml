@@ -13,11 +13,11 @@
         <param-value>classpath:spring.xml</param-value>
     </context-param>
 
-    <!-- shiro listener -->
+    <!-- 自定义装逼专用监听器 -->
     <listener>
-        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+        <listener-class>com.xinan.config.listener.EnvironmentContextListener</listener-class>
     </listener>
-    
+
     <!-- servlet encoding filter -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
