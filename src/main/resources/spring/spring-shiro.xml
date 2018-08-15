@@ -14,7 +14,14 @@
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
     </bean>
 
-    <bean id="shiroRealm" class="com.xinan.config.security.ShiroRealm"/>
+    <bean id="shiroRealm" class="com.xinan.common.config.ShiroRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"/>
+                <property name="hashIterations" value="1024"/>
+            </bean>
+        </property>
+    </bean>
 
     <!-- shiro spring-specific integration 可以自动调用IOC中的shiro bean的生命周期方法 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
@@ -35,7 +42,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /favicon.ico = anon
-                /statics/** = anon
+                /static/** = anon
+                /logout = logout
                 /login = anon
                 /** = authc
             </value>

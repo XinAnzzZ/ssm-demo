@@ -1,5 +1,7 @@
 package com.xinan.service.impl;
 
+import com.xinan.common.util.ResponseJson;
+import com.xinan.common.util.ShiroUtils;
 import com.xinan.entity.User;
 import com.xinan.mapper.UserMapper;
 import com.xinan.service.UserService;
@@ -25,5 +27,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserInfoByUsername(String username) {
         return userMapper.findByUsername(username);
+    }
+
+    @Override
+    public ResponseJson register(User user) {
+        user.setPassword(ShiroUtils.toMD5(user.getPassword(), user.getUsername()));
+        return ResponseJson.success();
     }
 }

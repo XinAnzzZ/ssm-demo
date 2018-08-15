@@ -1,6 +1,5 @@
-package com.xinan.config.security;
+package com.xinan.common.config;
 
-import com.xinan.consts.SecurityConst;
 import com.xinan.entity.User;
 import com.xinan.service.UserService;
 import org.apache.shiro.authc.*;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author XinAnzzZ
- * @date 2018/8/12 0012 13:14
+ * @date 2018/8/15 10:14
  */
 @Component
 public class ShiroRealm extends AuthorizingRealm {
@@ -35,8 +34,8 @@ public class ShiroRealm extends AuthorizingRealm {
         Object credentials = user.getPassword();
         String realmName = getName();
         // 盐
-        ByteSource salt = ByteSource.Util.bytes(SecurityConst.SHIRO_SALT);
-        return new SimpleAuthenticationInfo(principal, credentials, salt, realmName);
+        ByteSource credentialsSalt = ByteSource.Util.bytes(token.getUsername());
+        return new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
     }
 
     @Override

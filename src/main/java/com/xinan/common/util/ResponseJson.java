@@ -1,6 +1,6 @@
-package com.xinan.util;
+package com.xinan.common.util;
 
-import com.xinan.enums.ResponseEnum;
+import com.xinan.common.enums.ResponseEnum;
 import lombok.Data;
 
 /**
@@ -38,10 +38,11 @@ public class ResponseJson<T> {
     }
 
     public static ResponseJson success() {
-        ResponseJson responseJson = new ResponseJson();
-        responseJson.code = 200;
-        responseJson.msg = "success";
-        return responseJson;
+        return new ResponseJson();
+    }
+
+    public static ResponseJson success(Object data) {
+        return new ResponseJson(data);
     }
 
     public static ResponseJson fail(ResponseEnum responseEnum) {

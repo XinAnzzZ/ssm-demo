@@ -15,7 +15,7 @@
 
     <!-- 自定义装逼专用监听器 -->
     <listener>
-        <listener-class>com.xinan.config.listener.EnvironmentContextListener</listener-class>
+        <listener-class>com.xinan.common.listener.EnvironmentContextListener</listener-class>
     </listener>
 
     <!-- servlet encoding filter -->
@@ -87,5 +87,10 @@
         <servlet-name>spring mvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/user/404</location>
+    </error-page>
     
 </web-app>

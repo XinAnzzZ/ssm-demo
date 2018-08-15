@@ -1,5 +1,6 @@
 package com.xinan.service;
 
+import com.xinan.common.util.ResponseJson;
 import com.xinan.entity.User;
 
 /**
@@ -23,4 +24,12 @@ public interface UserService {
      * @return user info
      */
     User getUserInfoByUsername(String username);
+
+    /**
+     * register
+     *
+     * @param user the user
+     * @return the response
+     */
+    ResponseJson register(User user);
 }

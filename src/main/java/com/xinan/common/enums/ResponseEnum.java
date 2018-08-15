@@ -1,4 +1,4 @@
-package com.xinan.enums;
+package com.xinan.common.enums;
 
 /**
  * @author XinAnzzZ
@@ -9,6 +9,9 @@ public enum ResponseEnum {
 
     /*** 账号不存在 */
     UNKNOWN_ACCOUNT(401, "账号不存在！"),
+
+    /*** 密码错误 */
+    INCORRECT_CREDENTIAL(402, "账号或密码错误！"),
 
     /*** 没有访问权限 */
     UNAUTHORIZED(403, "没有访问权限！"),
