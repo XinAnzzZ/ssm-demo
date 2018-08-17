@@ -1,6 +1,6 @@
 package com.xinan.mapper;
 
-import com.xinan.entity.User;
+import com.xinan.entity.mybatis.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -17,8 +17,8 @@
     <bean id="shiroRealm" class="com.xinan.common.config.ShiroRealm">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-                <property name="hashAlgorithmName" value="MD5"/>
-                <property name="hashIterations" value="1024"/>
+                <property name="hashAlgorithmName" value="${shiro.hashAlgorithmName}"/>
+                <property name="hashIterations" value="${shiro.hashIterations}"/>
             </bean>
         </property>
     </bean>
@@ -43,8 +43,10 @@
             <value>
                 /favicon.ico = anon
                 /static/** = anon
-                /logout = logout
+                /druid/** = anon
+                /register = anon
                 /login = anon
+                /logout = logout
                 /** = authc
             </value>
         </property>

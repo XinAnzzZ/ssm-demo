@@ -4,7 +4,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!-- spring 启动监听器 -->
+    <!-- spring 启动监听器 start -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -12,13 +12,14 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
     </context-param>
+    <!-- spring 启动监听器 end -->
 
     <!-- 自定义装逼专用监听器 -->
     <listener>
         <listener-class>com.xinan.common.listener.EnvironmentContextListener</listener-class>
     </listener>
 
-    <!-- servlet encoding filter -->
+    <!-- servlet encoding filter start -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -35,8 +36,9 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!-- servlet encoding filter end -->
 
-    <!-- shiro filter -->
+    <!-- shiro filter start -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -49,8 +51,9 @@
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!-- shiro filter end -->
 
-    <!-- http request method converter -->
+    <!-- http request method converter start -->
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -59,8 +62,45 @@
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!-- http request method converter end -->
 
-    <!-- spring mvc -->
+    <!-- druid web stat filter: 配合StatViewServlet实现日志监控功能 start -->
+    <filter>
+        <filter-name>webStatFilter</filter-name>
+        <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+        <init-param>
+            <param-name>exclusions</param-name>
+            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>webStatFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>statViewServlet</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <param-name>loginUsername</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>loginPassword</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>resetEnable</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>statViewServlet</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    <!-- druid web stat filter: 配合StatViewServlet实现日志监控功能 end -->
+
+    <!-- spring mvc start -->
     <servlet>
         <servlet-name>spring mvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -87,10 +127,11 @@
         <servlet-name>spring mvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!-- spring mvc end -->
 
     <error-page>
         <error-code>404</error-code>
-        <location>/user/404</location>
+        <location>/not/found</location>
     </error-page>
-    
+
 </web-app>
