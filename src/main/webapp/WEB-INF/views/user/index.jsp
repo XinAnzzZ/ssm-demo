@@ -11,5 +11,6 @@
 </head>
 <body>
 <h1>index</h1>
+<a href="${pageContext.request.contextPath}/permission/role/configuration">权限配置页面</a>
 </body>
 </html>

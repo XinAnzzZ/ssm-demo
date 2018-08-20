@@ -1,6 +1,6 @@
 package com.xinan.controller;
 
-import com.xinan.entity.mybatis.User;
+import com.xinan.entity.User;
 import com.xinan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

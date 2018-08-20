@@ -2,11 +2,12 @@ package com.xinan.service.impl;
 
 import com.xinan.common.util.ResponseJson;
 import com.xinan.common.util.ShiroUtils;
-import com.xinan.entity.mybatis.User;
+import com.xinan.entity.User;
 import com.xinan.mapper.UserMapper;
 import com.xinan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author XinAnzzZ
@@ -29,9 +30,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public ResponseJson register(User user) {
         user.setPassword(ShiroUtils.toMD5(user.getPassword(), user.getUsername()));
-
+        userMapper.save(user);
         return ResponseJson.success();
     }
 }

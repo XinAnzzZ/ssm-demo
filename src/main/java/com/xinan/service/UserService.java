@@ -1,7 +1,7 @@
 package com.xinan.service;
 
 import com.xinan.common.util.ResponseJson;
-import com.xinan.entity.mybatis.User;
+import com.xinan.entity.User;
 
 /**
  * @author XinAnzzZ

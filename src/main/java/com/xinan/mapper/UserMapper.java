@@ -1,6 +1,6 @@
 package com.xinan.mapper;
 
-import com.xinan.entity.mybatis.User;
+import com.xinan.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,15 +9,7 @@ import org.apache.ibatis.annotations.Param;
  * @date 2018/8/10 16:40
  */
 @Mapper
-public interface UserMapper {
-
-    /**
-     * find by id
-     *
-     * @param userId user id
-     * @return user
-     */
-    User findById(@Param("userId") Integer userId);
+public interface UserMapper extends BaseMapper<User> {
 
     /**
      * find by username

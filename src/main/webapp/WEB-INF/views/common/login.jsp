@@ -39,7 +39,7 @@
         username: "",
         password: "",
       },
-      hello: "hello"
+      hello: "hello",
     },
     methods: {
       login() {
@@ -60,11 +60,11 @@
       },
       register() {
         location.href = '/register';
-      }
+      },
     },
     mounted() {
       formData = this.loginForm;
-    }
+    },
   });
 </script>
 </body>

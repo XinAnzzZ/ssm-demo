@@ -1,24 +1,34 @@
 package com.xinan.common.config;
 
-import com.xinan.entity.mybatis.User;
+import com.xinan.entity.User;
+import com.xinan.entity.UserRole;
+import com.xinan.mapper.UserRoleMapper;
 import com.xinan.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author XinAnzzZ
  * @date 2018/8/15 10:14
  */
 @Component
+@Slf4j
 public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
@@ -42,9 +52,12 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // 从principalCollection中获取登录信息，得到认证实体
         User user = (User) principalCollection.getPrimaryPrincipal();
+        log.debug(user + "授权开始");
         // 从得到的认证实体中获取用户的角色权限数据，或者通过查询数据库得到用户相应的角色、权限数据
-
+        List<UserRole> userRoleList = userRoleMapper.findByUserId(user.getId());
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        // authorizationInfo.addRoles(userRoleList);
         // 将用户的角色、权限数据封装到 SimpleAuthorizationInfo 中，返回给Shiro
-        return null;
+        return authorizationInfo;
     }
 }

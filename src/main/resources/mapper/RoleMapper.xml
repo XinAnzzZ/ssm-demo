@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xinan.mapper.RoleMapper">
+    <select id="findById" parameterType="int" resultType="Role">
+        SELECT *
+        FROM `role`
+        WHERE id = #{id};
+    </select>
+
+    <insert id="save" parameterType="Role">
+        INSERT INTO `user`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                `role_name`,
+            </if>
+            <if test="description != null">
+                `description`,
+            </if>
+            <if test="createDate != null">
+                `create_date`,
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                #{roleName},
+            </if>
+            <if test="description != null">
+                #{description},
+            </if>
+            <if test="createDate != null">
+                #{createDate},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
