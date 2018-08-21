@@ -56,7 +56,7 @@ public class ShiroRealm extends AuthorizingRealm {
         // 从得到的认证实体中获取用户的角色权限数据，或者通过查询数据库得到用户相应的角色、权限数据
         List<UserRole> userRoleList = userRoleMapper.findByUserId(user.getId());
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        // authorizationInfo.addRoles(userRoleList);
+        userRoleList.forEach(userRole -> authorizationInfo.addRole(userRole.getRole().getRoleName()));
         // 将用户的角色、权限数据封装到 SimpleAuthorizationInfo 中，返回给Shiro
         return authorizationInfo;
     }

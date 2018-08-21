@@ -5,15 +5,26 @@
 
 <mapper namespace="com.xinan.mapper.UserRoleMapper">
 
-    <select id="findById" parameterType="int" resultType="UserRole">
+    <resultMap id="UserRoleResultMap" type="UserRole">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <association property="role" javaType="Role">
+            <id property="id" column="id"/>
+            <result property="roleName" column="role_name"/>
+            <result property="description" column="description"/>
+            <result property="createDate" column="create_date" javaType="java.sql.Date" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="int" resultMap="UserRoleResultMap">
         SELECT `id`, user_id, role_id
         FROM `user_role`
         WHERE `id` = #{id};
     </select>
 
-    <select id="findByUserId" parameterType="int" resultType="UserRole">
-        SELECT `id`, user_id, role_id
-        FROM user_role
+    <select id="findByUserId" parameterType="int" resultMap="UserRoleResultMap">
+        SELECT u.`id`, u.user_id, r.id, r.role_name, r.description, r.create_date
+        FROM user_role u, role r
         WHERE user_id = #{userId}
     </select>
 

@@ -17,5 +17,5 @@ public class UserRole implements Serializable {
 
     private Integer userId;
 
-    private Integer roleId;
+    private Role role;
 }

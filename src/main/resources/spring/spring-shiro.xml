@@ -23,12 +23,6 @@
         </property>
     </bean>
 
-    <!-- shiro spring-specific integration 可以自动调用IOC中的shiro bean的生命周期方法 -->
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-    <!-- 启用注解。 官方文档特别强调，必须在配置了lifecycleBeanPostProcessor之后才可使用 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

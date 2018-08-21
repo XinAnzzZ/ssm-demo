@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--
         开启注解
@@ -27,7 +30,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="com.xinan.controller">
+    <context:component-scan base-package="com.xinan">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
@@ -43,11 +46,24 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- shiro spring-specific integration 可以自动调用IOC中的shiro bean的生命周期方法 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 启用注解。 官方文档特别强调，必须在配置了lifecycleBeanPostProcessor之后才可使用 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <!-- 如果使用了 aop，必须加上下面这段代码，否则会产生冲突，详细解释 http://www.jkeabc.com/311648.html -->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <aop:aspectj-autoproxy/>
+
     <!-- 文件上传 -->
-    <!--<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-    <!--<property name="defaultEncoding" value="UTF-8"/>-->
-    <!--<property name="maxUploadSize" value="10485760000"/>-->
-    <!--<property name="uploadTempDir" value="temp"/>-->
-    <!--<property name="maxInMemorySize" value="40960"/>-->
-    <!--</bean>-->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="uploadTempDir" value="temp"/>
+        <property name="maxUploadSize" value="99999999"/>
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
+
 </beans>

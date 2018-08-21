@@ -16,7 +16,7 @@
         WHERE username = #{username};
     </select>
 
-    <insert id="save" parameterType="User">
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `user`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">

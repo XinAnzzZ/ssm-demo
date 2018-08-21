@@ -23,9 +23,20 @@ public class CommonController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 404
+     */
     @RequestMapping("/not/found")
     public String to404() {
         return "common/404";
+    }
+
+    /**
+     * unauthorized
+     */
+    @RequestMapping("/common/unauthorized")
+    public String unauthorizedPage() {
+        return "/common/unauthorized";
     }
 
     /**
