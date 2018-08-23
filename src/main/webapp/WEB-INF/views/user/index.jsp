@@ -20,6 +20,8 @@
   function handleClick() {
     request.get('/permission/role/configuration/json');
   }
+
+
 </script>
 </body>
 </html>
