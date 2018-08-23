@@ -14,7 +14,7 @@
 <body>
 <h1>index</h1>
 <a href="${BasePath}/permission/role/configuration">权限配置页面</a>
-<a href="${BasePath}/user/list">列表页1</a>
+<a href="${BasePath}/user/list">列表页</a>
 <button onclick="handleClick()">zzz</button>
 <script type="application/javascript">
   function handleClick() {
