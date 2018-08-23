@@ -22,7 +22,7 @@ public class UserRoleMapperTest {
 
     @Test
     public void findByUserId() {
-        List<UserRole> byUserId = userRoleMapper.findByUserId(1);
-        System.out.println(byUserId);
+        List<UserRole> roleList = userRoleMapper.findByUserId(9);
+        System.out.println(roleList);
     }
 }

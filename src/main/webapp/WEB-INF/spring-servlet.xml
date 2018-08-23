@@ -66,4 +66,12 @@
         <property name="maxInMemorySize" value="40960"/>
     </bean>
 
+    <!-- @Value 注解 -->
+    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties">
+            <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+                <property name="location" value="classpath:global.properties"/>
+            </bean>
+        </property>
+    </bean>
 </beans>

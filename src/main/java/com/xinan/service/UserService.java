@@ -32,4 +32,11 @@ public interface UserService {
      * @return the response
      */
     ResponseJson register(User user);
+
+    /**
+     * get all user
+     *
+     * @return user list
+     */
+    ResponseJson getAllUser();
 }

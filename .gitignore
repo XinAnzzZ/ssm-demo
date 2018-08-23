@@ -1,7 +1,11 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### JRebel 配置文件 ###
 rebel.xml
+
+### logs ###
+/logs/
 
 ### STS ###
 .apt_generated

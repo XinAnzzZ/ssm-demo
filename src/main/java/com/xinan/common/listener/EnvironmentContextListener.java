@@ -1,7 +1,6 @@
 package com.xinan.common.listener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -12,19 +11,18 @@ import java.util.Properties;
  * @author XinAnzzZ
  * @date 2018/8/14 13:59
  */
+@Slf4j
 public class EnvironmentContextListener implements ServletContextListener {
-
-    private Logger logger = LoggerFactory.getLogger(EnvironmentContextListener.class);
 
     public EnvironmentContextListener() {
         super();
-        logger.debug("{[]} initialize start...", EnvironmentContextListener.class.getSimpleName());
+        log.debug("{[]} initialize start...", EnvironmentContextListener.class.getSimpleName());
     }
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        logger.info(getInitializeInfo());
-        logger.info(getInitializeLogo());
+        log.info(getInitializeInfo());
+        log.info(getInitializeLogo());
     }
 
     @Override

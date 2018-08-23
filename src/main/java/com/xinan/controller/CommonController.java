@@ -4,6 +4,7 @@ import com.xinan.common.enums.ResponseEnum;
 import com.xinan.common.util.ResponseJson;
 import com.xinan.entity.User;
 import com.xinan.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author XinAnzzZ
  * @date 2018/8/13 11:13
  */
+@Slf4j
 @Controller
 public class CommonController {
 
@@ -51,6 +53,7 @@ public class CommonController {
      * 注册
      */
     @PostMapping("/register")
+    @ResponseBody
     public ResponseJson userRegister(@RequestBody User user) {
         // 表单校验 ...
         return userService.register(user);
@@ -82,7 +85,7 @@ public class CommonController {
     /**
      * 首页
      */
-    @GetMapping("/index")
+    @GetMapping(value = {"/index", "/"})
     public String index() {
         return "/user/index";
     }

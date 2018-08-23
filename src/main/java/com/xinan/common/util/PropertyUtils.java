@@ -1,7 +1,6 @@
 package com.xinan.common.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,9 +12,8 @@ import java.util.Properties;
  * @date 2018/8/15 14:38
  */
 @SuppressWarnings("unused")
+@Slf4j
 public class PropertyUtils {
-
-    private static final Logger logger = LoggerFactory.getLogger(PropertyUtils.class);
 
     private static Properties props;
 
@@ -24,7 +22,7 @@ public class PropertyUtils {
     }
 
     private static synchronized void loadProps() {
-        logger.debug("开始加载properties文件内容.......");
+        log.info("开始加载properties文件内容...");
         props = new Properties();
         InputStream inputStream = null;
         try {
@@ -32,20 +30,23 @@ public class PropertyUtils {
             inputStream = PropertyUtils.class.getClassLoader().getResourceAsStream("global.properties");
             props.load(inputStream);
         } catch (FileNotFoundException e) {
-            logger.error("global.properties文件未找到");
+            e.printStackTrace();
+            log.error("global.properties文件未找到");
         } catch (IOException e) {
-            logger.error("出现IOException");
+            e.printStackTrace();
+            log.error("出现IOException");
         } finally {
             try {
                 if (null != inputStream) {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                logger.error("global.properties文件流关闭出现异常");
+                e.printStackTrace();
+                log.error("global.properties文件流关闭出现异常");
             }
         }
-        logger.info("加载properties文件内容完成...........");
-        logger.info("properties文件内容：" + props);
+        log.info("加载properties文件内容完成...");
+        log.info("properties文件内容：" + props);
     }
 
     public static String getProperty(String key) {

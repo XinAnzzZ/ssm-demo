@@ -27,13 +27,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseBody
     public ModelAndView handleUnauthorizedException(UnauthorizedException e) {
-        log.info("当前用户无权限：" + e);
+        log.info("当前用户没有权限：" + e);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes()).getRequest();
         String asyncHeader = "X-Requested-With";
         String asyncValue = "XMLHttpRequest";
         ModelAndView modelAndView;
-        if (asyncValue.equals(request.getHeader(asyncHeader))) {
+        if (asyncValue.equalsIgnoreCase(request.getHeader(asyncHeader))) {
             // 说明是异步请求，返回json数据
             modelAndView = new ModelAndView();
             MappingJackson2JsonView view = new MappingJackson2JsonView();

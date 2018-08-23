@@ -8,10 +8,10 @@
 <html>
 <head>
   <title>注册</title>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/vue.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/index.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/axios/axios.js"></script>
-  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/vue/index.css">
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/vue.js"></script>--%>
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/index.js"></script>--%>
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/axios/axios.js"></script>--%>
+  <%--<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/vue/index.css">--%>
 </head>
 <body>
 <div id="app">
@@ -20,8 +20,8 @@
       <el-form-item label="用户名">
         <el-input v-model="registerForm.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
-      <el-form-item lable="密码">
-        <el-input v-model="registerForm.password" placeholder="请输入密码"></el-input>
+      <el-form-item label="密码">
+        <el-input v-model="registerForm.password" type="password" placeholder="请输入密码" @keydown.native="keydown"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="register" type="primary">注册</el-button>
@@ -63,6 +63,11 @@
       },
       login() {
         location.href = '/login';
+      },
+      keydown() {
+        if (event.keyCode === 13) {
+          this.register();
+        }
       },
     },
   });

@@ -52,11 +52,14 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // 从principalCollection中获取登录信息，得到认证实体
         User user = (User) principalCollection.getPrimaryPrincipal();
-        log.debug(user + "授权开始");
+        log.info(user.getUsername() + "授权开始");
         // 从得到的认证实体中获取用户的角色权限数据，或者通过查询数据库得到用户相应的角色、权限数据
         List<UserRole> userRoleList = userRoleMapper.findByUserId(user.getId());
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        userRoleList.forEach(userRole -> authorizationInfo.addRole(userRole.getRole().getRoleName()));
+        userRoleList.forEach(userRole -> {
+            authorizationInfo.addRole(userRole.getRole().getRoleName());
+            log.info(user.getUsername() + "具有" + userRole.getRole().getRoleName() + "角色");
+        });
         // 将用户的角色、权限数据封装到 SimpleAuthorizationInfo 中，返回给Shiro
         return authorizationInfo;
     }

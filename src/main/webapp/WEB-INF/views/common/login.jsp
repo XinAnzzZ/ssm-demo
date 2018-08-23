@@ -8,10 +8,10 @@
 <html>
 <head>
   <title>Title</title>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/vue.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/index.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/axios/axios.js"></script>
-  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/vue/index.css">
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/vue.js"></script>--%>
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/index.js"></script>--%>
+  <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/axios/axios.js"></script>--%>
+  <%--<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/vue/index.css">--%>
 </head>
 <body>
 <div id="app">

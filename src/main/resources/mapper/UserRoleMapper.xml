@@ -8,11 +8,11 @@
     <resultMap id="UserRoleResultMap" type="UserRole">
         <id property="id" column="id"/>
         <result property="userId" column="user_id"/>
-        <association property="role" javaType="Role">
-            <id property="id" column="id"/>
+        <association property="role" column="role_id" javaType="Role">
+            <id property="id" column="rid"/>
             <result property="roleName" column="role_name"/>
             <result property="description" column="description"/>
-            <result property="createDate" column="create_date" javaType="java.sql.Date" jdbcType="TIMESTAMP"/>
+            <result property="createDate" column="create_date" javaType="java.sql.Date" jdbcType="DATE"/>
         </association>
     </resultMap>
 
@@ -23,8 +23,8 @@
     </select>
 
     <select id="findByUserId" parameterType="int" resultMap="UserRoleResultMap">
-        SELECT u.`id`, u.user_id, r.id, r.role_name, r.description, r.create_date
-        FROM user_role u, role r
+        SELECT u.`id`, u.user_id, r.id AS rid, r.role_name, r.description, r.create_date
+        FROM user_role u LEFT JOIN role r ON u.role_id = r.id
         WHERE user_id = #{userId}
     </select>
 
@@ -34,7 +34,7 @@
             <if test="userId != null">
                 `user_id`,
             </if>
-            <if test="roleId != null">
+            <if test="role.id != null">
                 `role_id`,
             </if>
         </trim>
@@ -42,8 +42,8 @@
             <if test="userId != null">
                 #{userId},
             </if>
-            <if test="roleId != null">
-                #{roleId},
+            <if test="role.id != null">
+                #{role.id},
             </if>
         </trim>
     </insert>

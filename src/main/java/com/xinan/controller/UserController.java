@@ -1,13 +1,11 @@
 package com.xinan.controller;
 
+import com.xinan.common.util.ResponseJson;
 import com.xinan.entity.User;
 import com.xinan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author XinAnzzZ
@@ -27,5 +25,31 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserInfo(@PathVariable("id") Integer userId) {
         return userService.getUserInfoById(userId);
+    }
+
+    /**
+     * 列表页
+     */
+    @GetMapping("/list")
+    public String listPage() {
+        return "/user/list";
+    }
+
+    /**
+     * 用户列表
+     */
+    @GetMapping("/list/data")
+    @ResponseBody
+    public ResponseJson getListData() {
+        return userService.getAllUser();
+    }
+
+    /**
+     * 保存用户
+     */
+    @PostMapping("")
+    @ResponseBody
+    public ResponseJson saveUser(@RequestBody User user) {
+        return userService.register(user);
     }
 }

@@ -16,6 +16,14 @@
         WHERE username = #{username};
     </select>
 
+    <select id="findByEntity" parameterType="User" resultType="User">
+        SELECT *
+        FROM user
+        <where>
+            <include refid="user_select"/>
+        </where>
+    </select>
+
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `user`
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -25,6 +33,9 @@
             <if test="password != null">
                 `password`,
             </if>
+            <if test="description != null">
+                `description`,
+            </if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="username != null">
@@ -32,6 +43,9 @@
             </if>
             <if test="password != null">
                 #{password},
+            </if>
+            <if test="description != null">
+                #{description},
             </if>
         </trim>
     </insert>
@@ -45,6 +59,9 @@
             <if test="password != null">
                 `password` = #{password},
             </if>
+            <if test="description != null">
+                `password` = #{description},
+            </if>
         </set>
         WHERE `id` = #{id}
     </update>
@@ -54,4 +71,16 @@
         FROM user
         WHERE `id` = #{id};
     </delete>
+
+    <sql id="user_select">
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="username != null">
+            AND username = #{username}
+        </if>
+        <if test="description != null">
+            AND description = #{description}
+        </if>
+    </sql>
 </mapper>

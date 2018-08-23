@@ -21,9 +21,8 @@ public class UserMapperTest {
     @Test
     public void findById() {
         User user = new User();
-        user.setUsername("testUsername");
-        user.setPassword("testPassword");
-        userMapper.save(user);
+        user.setUsername("xinan");
+        System.out.println(userMapper.findByEntity(null));
     }
 
     @Test

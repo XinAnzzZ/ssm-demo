@@ -12,12 +12,4 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ControllerAspectHandler {
-
-    // @Pointcut("execution(public * com.xinan.controller.*.*(..))")
-    // public void controllerPointCut() {
-    // }
-
-    // @Around("controllerPointCut()")
-    // public Object unauthorizedExceptionHandler(ProceedingJoinPoint pjp) {
-    // }
 }

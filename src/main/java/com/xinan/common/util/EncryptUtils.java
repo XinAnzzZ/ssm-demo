@@ -30,7 +30,7 @@ public class EncryptUtils {
     }
 
     /**
-     * 一次MD5加密
+     * 一次 MD5 加密
      *
      * @param str 要加密的字符串
      * @return 加密后的结果
