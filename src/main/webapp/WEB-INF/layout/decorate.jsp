@@ -13,19 +13,20 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/vue.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/static/vue/index.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/static/axios/axios.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.3.1.min.js"></script>
 
   <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/vue/index.css">
 
   <sitemeth:head/>
   <script type="application/javascript">
-    const request = axios.create({
-      timeout: 30000,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    });
+    // const request = axios.create({
+    //   timeout: 30000,
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'X-Requested-With': 'XMLHttpRequest'
+    //   }
+    // });
   </script>
 </head>
 <body>

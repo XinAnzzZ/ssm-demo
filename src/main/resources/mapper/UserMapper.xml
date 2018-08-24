@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xinan.mapper.UserMapper">
+<mapper namespace="com.alibaba.xinan.mapper.UserMapper">
     <select id="findById" parameterType="int" resultType="User">
         SELECT *
         FROM `user`
@@ -70,6 +70,27 @@
         DELETE
         FROM user
         WHERE `id` = #{id};
+    </delete>
+
+    <delete id="deleteAllByIdList">
+        DELETE
+        FROM user
+        WHERE id IN
+        <foreach collection="userIdList" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+        <!--
+			collection：指定要遍历的集合
+				List类型的参数会特殊处理在map中，map的key就叫list
+				Array数组类型的参数会特殊处理在map中，map的key就叫array
+			item：将当前遍历的元素赋值给指定的变量
+			separator：每个元素之间的分隔符
+			open：遍历出所有结果拼接一个开始的字符
+			close：遍历出所有结果拼接一个结束的字符
+			index：索引。遍历list的时候是索引，item就是当前值
+				    遍历map的时候，index是key，item就是map的值
+			#{变量名}就能取出变量的值，也就是当前遍历出的元素
+		 -->
     </delete>
 
     <sql id="user_select">

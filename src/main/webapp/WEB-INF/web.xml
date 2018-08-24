@@ -16,7 +16,7 @@
 
     <!-- 自定义装逼专用监听器 -->
     <listener>
-        <listener-class>com.xinan.common.listener.EnvironmentContextListener</listener-class>
+        <listener-class>com.alibaba.xinan.common.listener.EnvironmentContextListener</listener-class>
     </listener>
 
     <!-- servlet encoding filter start -->

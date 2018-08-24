@@ -14,7 +14,7 @@
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
     </bean>
 
-    <bean id="shiroRealm" class="com.xinan.common.config.ShiroRealm">
+    <bean id="shiroRealm" class="com.alibaba.xinan.common.config.ShiroRealm">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
                 <property name="hashAlgorithmName" value="${shiro.hashAlgorithmName}"/>
